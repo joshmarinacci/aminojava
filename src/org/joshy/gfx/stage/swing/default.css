@@ -1,0 +1,444 @@
+* {
+    margin: 1px;
+    padding: 2px;
+    background-color: #ffffff;
+    color: #000000;
+    border-width: 1px;
+    border-color: #000000;
+    text-align: left;
+    border-radius: 0px;
+    shrink-to-fit: false;
+    font-size: 12pt;
+    font-family: Arial, serif;
+    font-weight: normal;
+
+    /* turn these on to draw lines showing the box dimensions */
+    debug-margin:   false;
+    debug-border:   false;
+    debug-padding:  false;
+}
+
+/* =========== buttons =========== */
+.-class-Button { /* this selects all subclasses of Button as well */
+    margin: 3px;
+    padding: 3px 6px 3px 6px;
+    background-color: #c0c0c0;
+    border-width: 1px;
+    color: #444444;
+    border-color: #808080;
+    border-radius: 15px;
+    text-align: center;
+    shrink-to-fit: true;
+}
+
+.-class-SwatchColorPicker {
+    margin: 0px;
+    padding: 0px;
+}
+
+.-class-Tooltip {
+    background-color: #444444;
+    color: white;
+    shrink-to-fit: true;
+}
+
+.-class-Label {
+    border-width: 0px;
+    background-color: transparent;
+    shrink-to-fit: true;
+    color: black;
+}
+
+.-class-Button, .-class-Togglebutton {
+    background: linear-gradient(center top, #ebebeb 0%, #c0c0c0 100%);
+    /* a black shadow offset by 3,2 with a blur radius of 4 */
+    text-shadow: 0px 1px 3px #222222;
+}
+
+.-class-Checkbox {
+    border-width: 0px;
+    background-color: transparent;
+    icon: url(images/checkbox_normal.png);
+    icon-position: left;
+}
+
+.-class-Checkbox:selected {
+    icon: url(images/checkbox_selected.png);
+}
+
+.-class-Radiobutton {
+    border-width: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    icon: url(images/radiobutton_normal.png);
+}
+
+.-class-Radiobutton:selected {
+    icon: url(images/radiobutton_selected.png);
+}
+
+.-class-Togglebutton {
+    border-radius: 0px;
+}
+
+.-class-Button:hover, .-class-Togglebutton:hover {
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    color: #ffffff;
+    border-color: #808080;
+}
+
+.-class-Checkbox:hover, .-class-Radiobutton:hover {
+    color: #a0a0a0;
+}
+
+.-class-Button:disabled, .-class-Togglebutton:disabled {
+    background: none;
+    background-color: #a0a0a0;
+    text-shadow: none;
+}
+
+.-class-Togglebutton:selected {
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    color: #ffffff;
+    border-color: #808080;
+}
+
+.-class-Linkbutton {
+    background-color: transparent;
+    shrink-to-fit: true;
+    color: #000000;
+    border-width: 0px;
+    margin: 2px;
+    padding: 3px;
+}
+
+.-class-Linkbutton:hover {
+    color: #5050ff;
+}
+
+
+/* ============= Progress Bar and Slider =========== */
+
+.-class-ProgressBar {
+    width: 100px;
+    height: 20px;
+    shrink-to-fit: false;
+    padding: 3px;
+    
+    background-color: #a0a0a0;
+    background: linear-gradient(center top, #ebebeb 0%, #a1a1a1 100%);
+    border-width: 1px;
+    color: #444444;
+    border-color: #808080;
+    border-radius: 11px;
+    
+}
+.-class-ProgressBar::bar {
+    background-color: #0000ff;
+    border-color: #f0f0f0;
+    border-width: 1px;
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+    border-radius: 10px;
+}
+
+
+.-class-Slider {
+    width: 100px;
+    height: 20px;
+    background-color: black;
+    background: linear-gradient(center top, #ebebeb 0%, #a1a1a1 100%);
+    margin: 5px 1px 5px 1px;
+
+    border-width: 1px;
+    border-color: black;
+    border-radius: 10px;
+
+
+}
+
+.-class-Slider::thumb {
+    background-color: white;
+    height: 40px;
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    border-color: black;
+    border-radius: 0px;
+    margin-left:   1px;
+    margin-right:  1px;
+    margin-top:    2px;
+    margin-bottom: 2px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+/* =========== panels ======== */
+.-class-Panel, .-class-TitlePanel, .-class-HFlexBox, .-class-VFlexBox, .-class-GridBox, .-class-Panel {
+    background-color: transparent;
+    border-width: 0px;
+    border-color: black;
+    margin: 0px;
+    padding: 3px;
+}
+
+.-class-HFlexBox, .-class-VFlexBox, .-class-GridBox {
+    spacing: 3px;
+}
+
+.-class-TitlePanel {
+    background-color: transparent;
+    border-width: 1px;
+    margin: 6px;
+    padding: 6px;
+}
+.-class-TitlePanel::title {
+    color: black;
+    border-color: black;
+    margin: 0px;
+    padding-left:   3px;
+    padding-right: 15px;
+    padding-top:    3px;
+    padding-bottom: 3px;
+    background-color: #e8e8e8;
+}
+
+.-class-TabPanel {
+    /*border-width: 1px 1px 0px 1px;*/
+}
+.-class-TabTop {
+    background-color: #d0d0d0;
+    /*background: linear-gradient(center top, #04acec 0%, #0186ba 100%);*/
+    border-color: black;
+    border-width: 0px;/*1px 1px 0px 0px;*/
+    margin: 0px;
+    padding: 0px;
+    border-radius: 16px 16px 0px 0px;
+    color: #606060;
+    text-align: center;
+}
+.-class-TabTop:selected {
+    background-color: #ffaaaa;
+    background: linear-gradient(center top, #ebebeb 0%, #ededed 100%);
+    color: black;
+}
+
+.-class-SplitPane::divider {
+    background-color: #00ff00;
+    background: linear-gradient(left center, #888888 0%, #222222 100%);
+    border-color: #000000;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+.-class-SplitPane:vertical::divider {
+    background: linear-gradient(center top, #888888 0%, #222222 100%);
+}
+
+.-root {
+    background-color: #d0d0d0;
+}
+
+/* =========== scroll bars ========== */
+.-class-Scrollbar {
+    width: 100px;
+    height: 14px;
+    margin: 0px;
+    padding: 0px;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #e0e0e0;
+    border-radius: 0px;
+}
+
+.-class-Scrollbar::thumb {
+    background: linear-gradient(center top, #ffffff 0%, #808080 100%);
+    background-color: #888888;
+    border-color: #666666;
+    border-radius: 12px;
+    border-width: 1px;
+    margin: 0px 0px 1px 0px;
+}
+.-class-Scrollbar::track {
+    background-color: #a0a0a0;
+    background: linear-gradient(center top, #b0b0b0 0%, #ffffff 100%);
+    border-color: #000000;
+    border-radius: 12px;
+    border-width: 0px;
+    margin: 1px 0px 0px 0px;
+}
+.-class-Scrollbar::left-arrow{
+    border-color: #a0a0a0;
+    border-width: 0px;
+    border-radius: 0px;
+    margin: 1px;
+}
+.-class-Scrollbar::right-arrow {
+    border-color: #a0a0a0;
+    border-width: 0px;
+    border-radius: 0px;
+    margin: 1px;
+}
+
+.-class-Scrollbar:vertical {
+    width: 14px;
+    height: 100px;
+}
+.-class-Scrollbar:vertical::left-arrow {
+}
+.-class-Scrollbar:vertical::right-arrow {
+}
+.-class-Scrollbar:vertical::thumb {
+    background: linear-gradient(left center, #ffffff 0%, #808080 100%);
+    margin: 0px 1px 0px 1px;
+    prop8: 8px;
+}
+.-class-Scrollbar:vertical::track {
+    background: linear-gradient(left center, #808080 0%, #ffffff 100%);
+    margin: 1px 1px 0px 1px;
+    prop8: 9px;
+}
+
+/* ============== text boxes ============= */
+
+.-class-Textbox, .-class-Passwordbox, .-class-Textarea {
+    margin: 3px;
+    padding: 3px 5px 3px 5px;
+    border-color: #888888;
+    border-width: 1px;
+    background-color: #e8e8e8;
+    shrink-to-fit: true;
+    selection-color : #c0c0c0;
+    cursor-color: #000000;
+}
+
+.-class-Textbox:focused, .-class-Passwordbox:focused, .-class-Textarea:focused {
+    background-color: #ffffff;
+    selection-color: #99bbff;
+}
+
+.-class-SpinButton {
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px;
+}
+
+.-class-SpinButton:hover {
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    color: #ffffff;
+    border-color: #808080;
+}
+
+.-SpinButton-top {
+    margin: 2px 0px 0px 0px;
+    icon: url(images/arrow_up.png);
+}
+
+.-SpinButton-bottom {
+    margin: 0px 0px 2px 0px;
+    padding: 0px;
+    icon: url(images/arrow_down.png);
+}
+
+.-SpinButton-box {
+    margin: 2px 0px 2px 2px;
+    padding: 2px 2px 4px 2px;
+    border-color: #808080;
+    background-color: #d0d0d0;
+}
+
+.searchbox {
+    border-color: #888888;
+    border-radius: 20px;
+    padding: 4px 8px 4px 8px;
+}
+
+/* ===========  Popups ============== */
+.-class-PopupMenuButton {
+    background-color: #a0a0a0;
+    background: linear-gradient(center top, #ebebeb 0%, #a1a1a1 100%);
+    border-width: 1px;
+    color: #444444;
+    border-color: #808080;
+    border-radius: 11px;
+    padding: 3px;
+}
+
+.-class-PopupMenu {
+    background-color: #f0f0f0;
+    border-radius: 11px;
+    border-width: 1px;
+    border-color: #808080;
+    color: #444444;
+    margin: 0px;
+}
+.-class-PopupMenu::item {
+    background-color: #f0f0f0;
+    color: #444444;
+    margin: 0px;
+    border-color: #000000;
+    border-width: 0px;
+    border-radius: 0px;
+}
+.-class-PopupMenu::selected-item {
+    margin: 1px 0px 1px 0px;
+    background-color: #0000ff;
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    color: #ffffff;
+    border-color: #000000;
+    border-width: 1px 0px 1px 0px;
+    border-radius: 0px;
+}
+
+
+/* ============ List and Table =========== */
+.-class-ListView {
+    margin: 0px;
+    border-width: 1px;
+    border-color: #a0a0a0;
+    background-color:#f0f0f0;
+}
+.-class-ListView::item {
+    background-color: #f0f0f0;
+    border-color: #00ff00;
+    border-width: 0px;
+    color: #000000;
+}
+.-class-ListView::selected-item {
+    background-color: #0000ff;
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    border-color: #000000;
+    color: #ffffff;
+    margin: 0px 0px 2px 0px;
+    border-width: 1px 0px;
+}
+
+.-class-TableView {
+    margin: 0px;
+    border-width: 1px;
+    border-color: #a0a0a0;
+    background-color:#f0f0f0;
+    text-align: center;
+}
+.-class-TableView::item {
+    background-color: #f0f0f0;
+    border-color: #e0e0e0;
+    border-width: 1px;
+    border-top-width: 0px;
+    border-right-width: 1px;
+    color: #000000;
+}
+.-class-TableView::selected-item {
+    background-color: #0000ff;
+    background: linear-gradient(center top, #04acec 0%, #0186ba 100%);
+    margin: 0px 0px 1px 0px;
+    border-width: 1px 0px;
+    border-color: #04acec;
+    color: #ffffff;
+}

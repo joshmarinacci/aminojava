@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sets>    <set        name='foo'
+        >        <key            name='blah'
+            >            <value  language='DEFAULT'
+                >blah value</value>
+        </key>
+    </set>
+    <set        name='test'
+        >        <key            name='button.text'
+            >            <value  language='de-DE'
+                >Button de-DE</value>
+            <value  language='fr-FR'
+                >Button fr-FR</value>
+            <value  language='en-US'
+                >Button us</value>
+            <value  language='DEFAULT'
+                >Button default</value>
+            <value  language='tr-TR'
+                >Button tr-TR</value>
+            <value  language='hr-HR'
+                >Button hr-HR</value>
+        </key>
+        <key name="label.text">
+            <value>label value</value>
+        </key>
+        <key            name='checkbox.text'
+            >            <value  language='de-DE'
+                >Button de-DE</value>
+            <value  language='en-US'
+                >Button en-US</value>
+            <value  language='DEFAULT'
+                >Button</value>
+        </key>
+        <key            name='popup1'
+            >            <value  language='DEFAULT'
+                >popup value 1</value>
+        </key>
+        <key            name='popup3'
+            >            <value  language='DEFAULT'
+                >popup value 3</value>
+        </key>
+        <key            name='popup2'
+            >            <value  language='DEFAULT'
+                >popup value 2</value>
+        </key>
+        <key            name='textbox.hint'
+            >            <value  language='de-DE'
+                >Button de-DE</value>
+            <value  language='en-US'
+                >Button en-US</value>
+            <value  language='DEFAULT'
+                >Button</value>
+        </key>
+    </set>
+</sets>

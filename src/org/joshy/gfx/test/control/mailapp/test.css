@@ -1,0 +1,29 @@
+.searchbox {
+    border-color: #ff0000;
+    border-radius: 26px;
+    padding: 5px 10px 5px 10px;
+}
+
+#new_mail { icon: url(mail-new.png); }
+#get_mail { icon: url(mail-get.png); }
+#reply { icon: url(mail-reply-sender.png); }
+#reply_all { icon: url(mail-reply-all.png); }
+#forward { icon: url(mail-forward.png); }
+#delete { icon: url(mail-delete.png); }
+#note { icon: url(note.png); }
+#todo { icon: url(todo.png); }
+#junk { icon: url(user-trash.png); }
+
+#plus, #activity, #action {
+    icon: url(plus.png);
+    border-width: 0px;
+    background: transparent;
+    background-color: transparent;
+}
+
+#plus:hover, #activity:hover, #action:hover {
+    background-color: blue;
+}
+
+
+
