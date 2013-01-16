@@ -1,0 +1,9 @@
+#border_radius_2 {
+    border-radius: 1px;
+}
+#border_radius_6 {
+    ---border-radius : 1px;
+}
+#blahbla {
+    border-not-radius : foo;
+}

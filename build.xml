@@ -1,0 +1,264 @@
+<?xml version="1.0" ?>
+            
+<project default="help">
+    <target name="help">
+        <echo>ant dist      build and package the entire project, including jnlps</echo>
+        <echo>ant build-core  build and jar just amino</echo>
+    </target>
+
+    <target name="init">
+        <echo message="basedir = ${basedir}"/>
+        <buildnumber/>
+        <tstamp>
+            <format property="TIMESTAMP" pattern="yyyy-MM-dd_kk-mm"/>
+        </tstamp>
+        <echo message="timestamp = ${TIMESTAMP}"/>
+
+        <property  name="publish.dir" value="published/foo"/>
+        <echo message="publish dir = ${publish.dir}"/>
+        
+        <property  name="lib.jogl.dir" value="lib/jogl/"/>
+        <echo message="using lib.jogl.dir ${lib.jogl.dir}"/>
+        
+        <property  name="jnlp.codebase" value="file://${basedir}/dist/jnlp/"/>        
+        <echo message="jnlp codebase = ${jnlp.codebase}"/>
+        
+    </target>
+    
+    
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+        <delete dir="published"/>
+    </target>
+
+    <target name="build-core" depends="init">
+        <mkdir dir="build"/>
+
+        <mkdir dir="build/classes/"/>
+
+        <javac destdir="build/classes/" debug="true" source="1.6" target="1.6">
+            <src path="src"/>
+            <classpath path="${lib.jogl.dir}gluegen-rt.jar"></classpath>
+            <classpath path="${lib.jogl.dir}jogl.all.jar"></classpath>
+            <classpath path="${lib.jogl.dir}nativewindow.all.jar"></classpath>
+            <classpath path="${lib.jogl.dir}newt.all.jar"></classpath>
+            <classpath><fileset dir="lib"><include name="*.jar"/></fileset></classpath>
+        </javac>
+        <copy todir="build/classes/">
+            <fileset dir="src">
+                <include name="**"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+
+        <mkdir dir="build/jars"/>
+        <jar destfile="build/jars/amino-core.jar">
+            <fileset dir = "build/classes"></fileset>
+        </jar>
+
+        <copy todir="build/jars/">
+            <fileset dir="lib"><include  name="*.jar"/></fileset>
+        </copy>
+
+    </target>
+    
+    <target name="build-tests" depends="build-core">
+        <javac destdir="build/classes/" debug="true">
+            <src path="test"/>
+            <classpath path="${lib.jogl.dir}gluegen-rt.jar"></classpath>
+            <classpath path="${lib.jogl.dir}jogl.all.jar"></classpath>
+            <classpath path="${lib.jogl.dir}nativewindow.all.jar"></classpath>
+            <classpath path="${lib.jogl.dir}newt.all.jar"></classpath>
+            <classpath><fileset dir="lib"><include name="*.jar"/></fileset></classpath>
+        </javac>
+        <copy todir="build/classes/">
+            <fileset dir="test">
+                <include name="**"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    
+    <target name="core-docs">
+        <mkdir dir="dist/docs"/>
+        <javadoc destdir="dist/docs">
+        
+            <packageset dir="src" defaultexcludes="yes">
+              <exclude name="org/joshy/gfx/test/**"/>
+              <exclude name="org/joshy/gfx/css/**"/>
+              <exclude name="org/joshy/gfx/node/geom3d/**"/>
+              <exclude name="org/joshy/gfx/stage/jogl/**"/>
+              <exclude name="org/joshy/gfx/stage/swing/**"/>
+              <exclude name="org/joshy/gfx/stage/testing/**"/>
+              <exclude name="org/joshy/gfx/text/**"/>
+              <include name="org/joshy/gfx/**"/>
+            </packageset>
+            
+            <classpath>
+                <pathelement path="lib/parboiled-0.9.7.3.jar"/>
+                <pathelement path="lib/XMLLib.jar"/>
+            </classpath>
+            
+        </javadoc>
+    </target>
+    
+    <target name="dist" depends="build-core, core-docs, build-src, build-demos">
+    </target>
+    
+    <target name="build-demos" depends="build-grandtour, build-mailapp, build-partyboard, build-xmassim">
+    </target>
+    
+    <target name="build-grandtour" depends="build-core">
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=grandtour-bundler.xml"/>
+            <arg value="--target=onejar"/>
+            <arg value="--outdir=dist/"/>
+            <arg value="--jardir=build/jars/"/>
+        </java>        
+    </target>
+    
+    <target name="build-mailapp" depends="build-core">
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=mailapp-bundler.xml"/>
+            <arg value="--target=onejar"/>
+            <arg value="--outdir=dist/"/>
+            <arg value="--jardir=build/jars/"/>
+        </java>
+    </target>
+	
+    <target name="build-sidehatch-agent" depends="build-core">
+    	<jar jarfile="build/jars/sidehatch-agent.jar" basedir="bin" includes="**/sidehatch/*.class">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Implementation-Vendor" value="joshy" />
+				<attribute name="Implementation-Title" value="Amino sidehatch agent" />
+
+				<attribute name="Premain-Class" value="org.joshy.gfx.sidehatch.Agent" />
+				<attribute name="Agent-Class" value="org.joshy.gfx.sidehatch.Agent" />
+			</manifest>
+		</jar>
+    </target>
+	
+
+    <target name="build-partyboard" depends="build-core">
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=partyboard-bundler.xml"/>
+            <arg value="--target=onejar"/>
+            <arg value="--outdir=dist/"/>
+            <arg value="--jardir=build/jars/"/>
+        </java>
+    </target>
+
+    <target name="build-xmassim" depends="build-core">
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=xmassim-bundler.xml"/>
+            <arg value="--target=mac"/>
+            <arg value="--outdir=dist/xmas"/>
+            <arg value="--jardir=build/jars/"/>
+            <arg value="--jardir=lib/"/>
+        </java>
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=xmassim-bundler.xml"/>
+            <arg value="--target=win"/>
+            <arg value="--outdir=dist/xmas"/>
+            <arg value="--jardir=build/jars/"/>
+            <arg value="--jardir=lib/"/>
+        </java>
+        <java
+            classpath="lib/AppBundler.jar;lib/XMLLib.jar"
+            classname="com.joshondesign.appbundler.Bundler" fork="true">
+            <arg value="--file=xmassim-bundler.xml"/>
+            <arg value="--target=onejar"/>
+            <arg value="--outdir=dist/xmas"/>
+            <arg value="--jardir=build/jars/"/>
+            <arg value="--jardir=lib/"/>
+        </java>
+        <zip destfile="dist/xmas/mac/XmasSim.mac.zip">
+            <zipfileset dir="dist/xmas/mac">
+                <include name="XmasSim.app"/>
+                <include name="XmasSim.app/**"/>
+                <exclude name="XmasSim.app/Contents/MacOS/JavaApplicationStub"/>
+            </zipfileset>
+            <zipfileset dir="dist/xmas/mac" includes="XmasSim.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>
+        </zip>        
+        <zip destfile="dist/xmas/win/XmasSim.win.zip">
+            <zipfileset dir="dist/xmas/win" prefix="XmasSim">
+                <include name="XmasSim.exe"/>
+                <include name="lib/**"/>
+                <include name="msvcr71.dll"/>
+            </zipfileset>
+<!--            <zipfileset dir="dist/xmas/mac" includes="XmasSim.app/Contents/MacOS/JavaApplicationStub" filemode="755"/> -->
+        </zip>        
+
+    </target>
+
+    <target name="build-src" depends="init">
+        <mkdir dir="dist"/>
+        <zip destfile="dist/amino.src.zip">
+            <zipfileset dir=".">
+                <include name="build.xml"/>
+                <include name="lib/**"/>
+                <include name="src/**"/>
+                <include name="test/**"/>
+                <include name="LICENSE.TXT"/>
+            </zipfileset>
+<!--            <zipfileset dir="dist/mac" includes="${app.name}.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>-->
+        </zip>        
+    </target>
+    
+    <target name="publish" depends="dist">
+        <copy todir="${publish.dir}">
+            <fileset dir="dist/">
+            </fileset>
+        </copy>
+        <copy todir="${publish.dir}/lib">
+            <fileset dir="build/jars/">
+            </fileset>
+        </copy>
+
+        <echo file="${publish.dir}/index.html"><![CDATA[
+            <html>
+                <head>
+                    <title>Amino Daily Build ${build.number} ${TIMESTAMP}</title>
+                    <link rel="stylesheet" type="text/css" href="index.css"></link>
+                </head>
+                <body>
+                    <h1>Amino Daily Build</h1>
+                    <h2>Build number: ${build.number}</h2>
+                    <h2>Build date: ${TIMESTAMP}</h2>
+                    <h3>Build</h3>
+                    <ul>
+                        <li><a href="amino.src.zip">Full Source</a> (zip file)</li>
+                        <li><a href="docs/index.html">JavaDocs</a> (online)</li>
+                        <li><a href="lib/">all jars</a></li>
+                    </ul>
+                    <h3>Demos</h3>
+                    <ul>
+                        <li><a href="GrandTour.onejar.jar">Grand Tour</a> double click jar</li>
+                        <li><a href="MailApp.onejar.jar">Mail.app Mockup</a> double click jar</li>
+                        <li><a href="PartyBoard.onejar.jar">PartyBoard</a> double click jar</li>
+			<li><a href="xmas/">Xmas Sim</a></li>
+                    </ul>
+                </body>
+            </html>
+            ]]>
+        </echo>
+        <copy todir="${publish.dir}" file="index.css"/>
+
+    </target>
+    
+    
+</project>
+
+

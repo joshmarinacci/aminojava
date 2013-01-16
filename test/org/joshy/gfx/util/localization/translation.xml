@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<sets>
+
+
+<set name="menus">
+     <key name="window">
+          <value>Window</value>
+          <value language="en_US">Wonder</value>
+          <value language="zz_ZZ">Zindow</value>
+     </key>
+    <key name="foobar">
+        <value>defaultfoobar</value>
+        <value language="zz_ZZ">nondefaultfoobar</value>
+    </key>
+</set>
+
+
+</sets>

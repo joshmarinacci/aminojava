@@ -1,0 +1,58 @@
+/* check that id overrides class overrides element */
+#testButton {
+    prop3: 23px;
+}
+
+.-class-Button {
+    prop2: 12px;
+    prop3: 13px;                        
+    prop4: 1px;
+}
+
+Button {
+    prop1: 1px;
+    prop2: 2px;
+    prop3: 3px;
+    prop4: 2px;
+}
+
+
+/* check that class plus pseudo-class will work */
+.-class-Button:hover {
+    prop4: 4px;
+}
+.-class-Label:hover {
+    prop4: 5px;
+}
+
+.-class-Scrollbar {
+    thumb-background: linear-gradient(left center, #ffffff 0%, #808080 100%);
+    width: 100px;
+    height: 20px;
+}
+.-class-Scrollbar:vertical {
+    thumb-background: linear-gradient(left center, #ffffff 0%, #808080 100%);
+    width: 20px;
+    height: 100px;
+}
+
+/* check that class plus pseudo-class plus pseudo-element will work */
+.-class-Button:hover::micro {
+    prop5: 8px;
+}
+.-class-Scrollbar:vertical {
+    prop6: 20px;
+}
+.-class-Scrollbar::track {
+    prop6: 21px;
+}
+.-class-Scrollbar:vertical::thumb {
+    background: linear-gradient(left center, #808080 0%, #ffffff 100%);
+    prop6: 22px;
+    margin: 1px 1px 0px 1px;
+}
+.-class-Scrollbar:vertical::track {
+    background: linear-gradient(left center, #808080 0%, #ffffff 100%);
+    prop6: 23px;
+    margin: 1px 1px 0px 1px;
+}
