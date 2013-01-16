@@ -57,6 +57,12 @@ public class ArrayListModel<E> extends ArrayList<E> implements ListModel<E> {
         return b;
     }
 
+    @Override
+    public E get(int i) {
+        if(i >= size()) return null;
+        return super.get(i);    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
     private void fireUpdate() {
         EventBus.getSystem().publish(new ListView.ListEvent(ListView.ListEvent.Updated,this));
     }
