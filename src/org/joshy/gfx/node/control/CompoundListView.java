@@ -311,6 +311,7 @@ public class CompoundListView extends Control implements Parent, Focusable, Scro
         double y = yoff;
         for (Node n : children()) {
             n.setTranslateY(y);
+            n.setTranslateX(0);
             if (n instanceof Control) {
                 Control c = (Control) n;
                 c.setWidth(getWidth());

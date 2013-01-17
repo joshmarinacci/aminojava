@@ -100,7 +100,7 @@ public class Label extends Control {
         //g.drawRect(0,0,getWidth(),getHeight());
     }
 
-    public Label setText(String text) {
+    public Label setText(CharSequence text) {
         this.text = text;
         setLayoutDirty();
         setDrawingDirty();
