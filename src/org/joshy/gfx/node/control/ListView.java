@@ -1,5 +1,7 @@
 package org.joshy.gfx.node.control;
 
+import java.awt.geom.Point2D;
+import java.util.List;
 import org.joshy.gfx.Core;
 import org.joshy.gfx.SkinManager;
 import org.joshy.gfx.css.CSSMatcher;
@@ -8,10 +10,6 @@ import org.joshy.gfx.draw.Font;
 import org.joshy.gfx.draw.GFX;
 import org.joshy.gfx.event.*;
 import org.joshy.gfx.node.Bounds;
-
-import java.awt.geom.Point2D;
-import java.util.List;
-import org.joshy.gfx.util.u;
 
 /**
  * ListView is the classic list control that uses lightweight renderers.  If is scrolling
@@ -83,7 +81,7 @@ public class ListView<E> extends Control implements Focusable, ScrollPane.Scroll
                 return (E)("dummy item " + i);
             }
             public int size() {
-                return 3;
+                return 20;
             }
         });
         EventBus.getSystem().addListener(FocusEvent.All, new Callback<FocusEvent>(){
@@ -151,7 +149,6 @@ public class ListView<E> extends Control implements Focusable, ScrollPane.Scroll
     private int calculateIndexAt(double x, double y) {
         int startRow = (int)(-scrollY/rowHeight);
         int startCol = (int)(-scrollX/colWidth);
-        int index = 0;
         int voff = (int) (scrollY % rowHeight);
         int ay = (int) (y-voff);
         int erow = (int) (ay / rowHeight);
@@ -159,18 +156,17 @@ public class ListView<E> extends Control implements Focusable, ScrollPane.Scroll
         int row = (int) ((y+voff)/rowHeight+startRow);
         int col = (int) (x/colWidth+startCol);
         switch(orientation) {
-            case Vertical: index = erow; break;
-            case Horizontal: index = (int) (x/colWidth+startCol); break;
+            case Vertical: return erow;
+            case Horizontal: return (int) (x/colWidth+startCol);
             case HorizontalWrap:
                 int rowLength = (int) (getWidth()/colWidth);
-                index = row * rowLength + col;
-                break;
+                return erow * rowLength + col;
             case VerticalWrap:
                 int colLength = (int) (getHeight()/rowHeight);
-                index = col * colLength + row;
-                break;
+                return col * colLength + row;
+            default:
+                return erow;
         }
-        return index;
     }
 
     private void handleArrowKeys(KeyEvent event) {

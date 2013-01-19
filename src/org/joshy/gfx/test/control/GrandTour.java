@@ -182,15 +182,18 @@ public class GrandTour implements Runnable {
                 SwatchColorPicker color2 = new SwatchColorPicker();
                 popup.setModel(ListView.createModel(new String[]{"Ethernet","WiFi","Bluetooth","FireWire","USB hack"}));
 
-                ListView listView = new ListView();
-                listView.setModel(new ListModel(){
+                ListModel stdModel = new ListModel() {
                     public Object get(int i) {
                         return "item " + i;
                     }
+
                     public int size() {
-                        return 100;
+                        return 30;
                     }
-                });
+                };
+
+                ListView listView = new ListView();
+                listView.setModel(stdModel);
                 ScrollPane sp = new ScrollPane();
                 sp.setContent(listView);
                 sp.setWidth(300);
@@ -204,10 +207,22 @@ public class GrandTour implements Runnable {
                     }
                 });
                 clistView.setRowHeight(35);
+                clistView.setModel(stdModel);
                 ScrollPane sp3 = new ScrollPane();
                 sp3.setContent(clistView);
                 sp3.setWidth(300);
                 sp3.setHeight(200);
+
+
+                ListView hwlistview = new ListView();
+                hwlistview.setOrientation(ListView.Orientation.HorizontalWrap);
+                hwlistview.setColumnWidth(100);
+                hwlistview.setRowHeight(70);
+                hwlistview.setModel(stdModel);
+                ScrollPane sp4 = new ScrollPane();
+                sp4.setContent(hwlistview);
+                sp4.setWidth(300);
+                sp4.setHeight(300);
 
 
                 FlexBox box = new VFlexBox()
@@ -215,8 +230,10 @@ public class GrandTour implements Runnable {
                         .add(new HFlexBox().add(color1,color2))
                         .add(new Label("List View"))
                         .add(sp)
-                        .add(new Label("Compounds List View"))
+                        .add(new Label("Compound List View"))
                         .add(sp3)
+                        .add(new Label("Horiz Wrap List View"))
+                        .add(sp4)
                         ;
                 return box;
 
