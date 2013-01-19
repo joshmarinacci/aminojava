@@ -1,5 +1,6 @@
 package org.joshy.gfx.css;
 
+import java.net.URI;
 import org.joshy.gfx.css.values.BaseValue;
 import org.joshy.gfx.css.values.LinearGradientValue;
 import org.joshy.gfx.css.values.URLValue;
@@ -8,8 +9,6 @@ import org.joshy.gfx.node.Bounds;
 import org.joshy.gfx.node.Insets;
 import org.joshy.gfx.node.control.Control;
 import org.joshy.gfx.node.control.Scrollbar;
-
-import java.net.URI;
 
 /**
  * Implements drawing Controls using the CSS box model.

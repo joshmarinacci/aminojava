@@ -1,5 +1,10 @@
 package org.joshy.gfx.test.control;
 
+import java.awt.geom.Path2D;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.joshy.gfx.Core;
 import org.joshy.gfx.draw.FlatColor;
 import org.joshy.gfx.draw.Font;
@@ -14,17 +19,12 @@ import org.joshy.gfx.test.drawing.ChartTest;
 import org.joshy.gfx.test.drawing.OverlayTest;
 import org.joshy.gfx.test.drawing.TransformTest;
 
-import java.awt.geom.Path2D;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class GrandTour implements Runnable { 
     public static void main(String... args) throws Exception, InterruptedException {
         Core.setUseJOGL(false);
         Core.init();
-        //Core.getShared().loadCSS(new File("test.css"));
-        //Core.setDebugCSS(new File("test.css"));
+        Core.getShared().loadCSS(new File("test.css"));
+        Core.setDebugCSS(new File("test.css"));
         //Core.requestDebugCSS();
         Core.getShared().defer(new GrandTour());
     }

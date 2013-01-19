@@ -13,4 +13,15 @@ public class SizeInfo {
     public double contentWidth;
     public double contentHeight;
     public double contentBaseline;
+
+    @Override
+    public String toString() {
+        return "SizeInfo{" +
+                "width=" + width +
+                ", height=" + height +
+                ", contentWidth=" + contentWidth +
+                ", contentHeight=" + contentHeight +
+                ", contentBaseline=" + contentBaseline +
+                '}';
+    }
 }
