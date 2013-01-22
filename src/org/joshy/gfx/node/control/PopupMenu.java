@@ -152,6 +152,7 @@ public class PopupMenu extends Control {
                 selectedItemSizeInfo.width= itemBounds.getWidth();
                 selectedItemSizeInfo.height = itemBounds.getHeight();
                 //draw the selected item
+                selectedItemPainter.gradientFill.setEndY(itemBounds.getHeight());
                 selectedItemPainter.draw(g,selectedItemStyleInfo,selectedItemSizeInfo,"");
             } else {
                 itemSizeInfo.width= itemBounds.getWidth();

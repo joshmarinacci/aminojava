@@ -119,4 +119,23 @@ public class LinearGradientFill extends MultiGradientFill{
         }
         return grad;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        for(Stop stop : stops) {
+            sb.append(stop.getColor().toString()+", ");
+        }
+        return "LinearGradientFill{" +
+                "startX=" + startX +
+                ", startY=" + startY +
+                ", endX=" + endX +
+                ", endY=" + endY +
+                ", startXSnapped=" + startXSnapped +
+                ", startYSnapped=" + startYSnapped +
+                ", endXSnapped=" + endXSnapped +
+                ", endYSnapped=" + endYSnapped +
+                ", stops="+sb +
+                '}';
+    }
 }
