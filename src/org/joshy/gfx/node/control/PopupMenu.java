@@ -1,5 +1,6 @@
 package org.joshy.gfx.node.control;
 
+import java.util.Date;
 import org.joshy.gfx.SkinManager;
 import org.joshy.gfx.css.*;
 import org.joshy.gfx.draw.FlatColor;
@@ -10,8 +11,6 @@ import org.joshy.gfx.event.ChangedEvent;
 import org.joshy.gfx.event.EventBus;
 import org.joshy.gfx.event.MouseEvent;
 import org.joshy.gfx.node.Bounds;
-
-import java.util.Date;
 
 /**
 * A PopupMenu is a popup control that can be used for context menus or dropdowns.
@@ -136,40 +135,44 @@ public class PopupMenu extends Control {
         //Bounds bounds = new Bounds(0,0,getWidth(),getHeight());
         CSSMatcher matcher = new CSSMatcher(this);
 
+        //draw the background
         boxPainter.draw(g,styleInfo,sizeInfo,"");
 
+        //for each item
         for(int i=0; i<model.size(); i++) {
             Object o = model.get(i);
             double rowy = i*rowHeight;
-            Bounds itemBounds = new Bounds(1, rowy + spacer, getWidth() - 2, rowHeight);
+            //inset by 1 to account for the popup menu's own border
+            Bounds itemBounds = new Bounds(1, rowy + spacer, getWidth()-1, rowHeight);
+
+            g.translate(itemBounds.getX(),itemBounds.getY());
             matcher.pseudoElement = "item";
             if(i == hoverRow) {
                 matcher.pseudoElement = "selected-item";
                 selectedItemSizeInfo.width= itemBounds.getWidth();
                 selectedItemSizeInfo.height = itemBounds.getHeight();
-                g.translate(itemBounds.getX(),itemBounds.getY());
+                //draw the selected item
                 selectedItemPainter.draw(g,selectedItemStyleInfo,selectedItemSizeInfo,"");
-                g.translate(-itemBounds.getX(),-itemBounds.getY());
             } else {
                 itemSizeInfo.width= itemBounds.getWidth();
                 itemSizeInfo.height = itemBounds.getHeight();
-                g.translate(itemBounds.getX(),itemBounds.getY());
+                //draw the regular item
                 itemPainter.draw(g,itemStyleInfo,itemSizeInfo,"");
-                g.translate(-itemBounds.getX(),-itemBounds.getY());
             }
             int col = cssSkin.getCSSSet().findColorValue(matcher, "color");
             g.setPaint(new FlatColor(col));
-            drawText(g, o, rowy, i);
+            drawText(g, o, rowy, i, itemBounds);
+            g.translate(-itemBounds.getX(),-itemBounds.getY());
         }
     }
 
-    private void drawText(GFX g, Object o, double rowy, int i) {
+    private void drawText(GFX g, Object o, double rowy, int row, Bounds itemBounds) {
         String s = o.toString();
         if(textRenderer != null) {
-            s = textRenderer.toString(null,o,i);
+            s = textRenderer.toString(null,o,row);
         }
         Font.drawCenteredVertically(g, s, cssSkin.getDefaultFont(),
-                3,rowy+spacer,getWidth(),rowHeight,true);
+                6,0,itemBounds.getWidth(),itemBounds.getHeight(),true);
     }
 
 

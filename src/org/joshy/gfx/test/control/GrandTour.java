@@ -18,6 +18,7 @@ import org.joshy.gfx.stage.Stage;
 import org.joshy.gfx.test.drawing.ChartTest;
 import org.joshy.gfx.test.drawing.OverlayTest;
 import org.joshy.gfx.test.drawing.TransformTest;
+import org.joshy.gfx.util.u;
 
 public class GrandTour implements Runnable { 
     public static void main(String... args) throws Exception, InterruptedException {
@@ -245,6 +246,62 @@ public class GrandTour implements Runnable {
             public Control build() throws Exception {
                 TitlePanel panel = new TitlePanel();
                 panel.add(new Button("blah"));
+                return panel;
+            }
+        });
+
+        examples.add(new Example("Context Menu") {
+            @Override
+            public Control build() throws Exception {
+                final Panel panel = new Panel();
+                panel.add(new Button("show").onClicked(new Callback<ActionEvent>() {
+                    @Override
+                    public void call(ActionEvent event) throws Exception {
+                        u.p("showing a context menu");
+                        ContextMenu menu = new ContextMenu();
+                        menu.addActions(new AminoAction() {
+                            @Override
+                            public CharSequence getDisplayName() {
+                                return "Action";
+                            }
+
+                            @Override
+                            public void execute() throws Exception {
+                            }
+                        });
+                        menu.addActions(new AminoAction() {
+                            @Override
+                            public CharSequence getDisplayName() {
+                                return "Longer action";
+                            }
+
+                            @Override
+                            public void execute() throws Exception {
+                            }
+                        });
+                        menu.addActions(new AminoAction() {
+                            @Override
+                            public CharSequence getDisplayName() {
+                                return "small action";
+                            }
+
+                            @Override
+                            public void execute() throws Exception {
+                            }
+                        });
+                        menu.addActions(new AminoAction() {
+                            @Override
+                            public CharSequence getDisplayName() {
+                                return "another action";
+                            }
+
+                            @Override
+                            public void execute() throws Exception {
+                            }
+                        });
+                        menu.show(panel,100,100);
+                    }
+                }));
                 return panel;
             }
         });
