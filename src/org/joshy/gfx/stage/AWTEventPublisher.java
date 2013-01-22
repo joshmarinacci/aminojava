@@ -77,11 +77,12 @@ public class AWTEventPublisher extends EventPublisher
         Node node = findTopNode(e.getX(),e.getY());
         Point2D point = convertSceneToNode(e.getX(),e.getY(), node);
         org.joshy.gfx.event.MouseEvent evt = toEvent(e, point, node, org.joshy.gfx.event.MouseEvent.MousePressed);
-        EventBus.getSystem().setPressedNode(node);
-        EventBus.getSystem().publish(evt);
         if(evt.isControlPressed() && OSUtil.isMac() || evt.getButton() == 3 || e.isPopupTrigger()) {
             org.joshy.gfx.event.MouseEvent evt2 = toEvent(e, point, node, org.joshy.gfx.event.MouseEvent.OpenContextMenu);
             EventBus.getSystem().publish(evt2);
+        } else {
+            EventBus.getSystem().setPressedNode(node);
+            EventBus.getSystem().publish(evt);
         }
     }
     private org.joshy.gfx.event.MouseEvent toEvent(MouseEvent e, Point2D point, Node node, Event.EventType type) {
