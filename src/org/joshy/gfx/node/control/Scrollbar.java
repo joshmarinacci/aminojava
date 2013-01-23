@@ -1,20 +1,17 @@
 package org.joshy.gfx.node.control;
 
+import java.awt.geom.Point2D;
 import org.joshy.gfx.SkinManager;
 import org.joshy.gfx.css.BoxPainter;
 import org.joshy.gfx.css.CSSSkin;
 import org.joshy.gfx.css.SizeInfo;
 import org.joshy.gfx.css.StyleInfo;
-import org.joshy.gfx.draw.FlatColor;
 import org.joshy.gfx.draw.GFX;
 import org.joshy.gfx.event.Callback;
 import org.joshy.gfx.event.ChangedEvent;
 import org.joshy.gfx.event.EventBus;
 import org.joshy.gfx.event.MouseEvent;
 import org.joshy.gfx.node.Bounds;
-import org.joshy.gfx.util.GraphicsUtil;
-
-import java.awt.geom.Point2D;
 
 
 /**
@@ -30,7 +27,7 @@ public class Scrollbar extends Control {
     private double largeScroll = 20;
 
     protected boolean vertical = false;
-    double arrowLength = 15;
+    double arrowLength = 0;
     double thumbLength = 20;
     private boolean thumbPressed = false;
     private boolean isProportional = false;
@@ -247,6 +244,7 @@ public class Scrollbar extends Control {
         g.translate(-thumbBounds.getX(),-thumbBounds.getY());
 
         //draw the arrows
+        /*
         g.setPaint(new FlatColor(0x303030));
         if(isVertical()) {
             GraphicsUtil.fillUpArrow(g,2,2,10);
@@ -255,6 +253,7 @@ public class Scrollbar extends Control {
             GraphicsUtil.fillLeftArrow(g,2,2,10);
             GraphicsUtil.fillRightArrow(g,getWidth()-2-10,2,10);
         }
+        */
     }
 
     Bounds calculateThumbBounds() {
