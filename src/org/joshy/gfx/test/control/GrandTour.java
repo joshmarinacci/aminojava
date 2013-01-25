@@ -49,6 +49,15 @@ public class GrandTour implements Runnable {
                         .add(new Checkbox("Check box"))
                         .add(new Radiobutton("Radio button"))
                         .add(new Linkbutton("a hyperlink"));
+
+                Togglegroup tg = new Togglegroup();
+                Togglebutton[] btns = new Togglebutton[3];
+                for(int i=0; i<btns.length; i++) {
+                    btns[i] = new Togglebutton("toggle: " + i);
+                    box.add(btns[i]);
+                    tg.add(btns[i]);
+                }
+
                 Button hoverButton = new Button("Tooltip");
                 Tooltip tooltip = new Tooltip(hoverButton,"I'm a tooltip");
                 box.add(hoverButton);
