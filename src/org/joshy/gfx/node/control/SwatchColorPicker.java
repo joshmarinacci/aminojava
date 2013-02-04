@@ -22,11 +22,17 @@ public class SwatchColorPicker extends Button {
     private PopupColorPicker popup;
     private ColorCallback outsideColorCallback;
     private List<CustomSwatch> customSwatches = new ArrayList<CustomSwatch>();
+    private int size = 9;
+    private int rowCount = 18;
+    private int colCount = 36;
 
     public SwatchColorPicker() {
         super();
         setPrefWidth(26);
         setPrefHeight(26);
+        setSize(9);
+        setRowCount(18);
+        setColumnCount(36);
     }
 
     public void setOutsideColorCallback(ColorCallback outsideColorCallback) {
@@ -73,12 +79,21 @@ public class SwatchColorPicker extends Button {
         return selectedColor;
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
+    }
+
+    public void setColumnCount(int columnCount) {
+        this.colCount = columnCount;
+    }
+
     private class PopupColorPicker extends Control {
         private int selectedX;
         private int selectedY;
-        private final int size = 9;
-        private final int rowCount = 18;
-        private final int colCount = 36;
 
         public PopupColorPicker(SwatchColorPicker swatchColorPicker) {
             EventBus.getSystem().addListener(this, MouseEvent.MouseAll, new Callback<MouseEvent>() {

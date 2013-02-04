@@ -116,7 +116,7 @@ public class PopupMenu extends Control {
             Object o = getModel().get(row);
             String s =o.toString();
             if(textRenderer != null) {
-                s = textRenderer.toString(null,s,row);
+                s = textRenderer.toString(null,o,row);
             }
             maxWidth = Math.max(maxWidth,itemStyleInfo.font.calculateWidth(s)+15);
         }
