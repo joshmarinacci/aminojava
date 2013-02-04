@@ -343,6 +343,10 @@ public class ListView<E> extends Control implements Focusable, ScrollPane.Scroll
         return selectedIndex;
     }
 
+    public E getSelectedItem() {
+        return getModel().get(getSelectedIndex());
+    }
+
     public void setSelectedIndex(int selectedIndex) {
         if(selectedIndex < -1) return;
         if(selectedIndex >= model.size()) return;

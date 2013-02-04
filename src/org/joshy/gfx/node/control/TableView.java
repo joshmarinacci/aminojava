@@ -362,6 +362,9 @@ public class TableView<D,H> extends Control implements Focusable, ScrollPane.Scr
     public int getSelectedIndex() {
         return getSelectedRow();
     }
+    public D getSelectedItem() {
+        return getModel().get(getSelectedIndex(),0);
+    }
 
     public double getRowHeight() {
         return rowHeight;

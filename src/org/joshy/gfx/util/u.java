@@ -117,6 +117,7 @@ public class u {
             out.write(buf,0,n);
         }
         out.close();
+        in.close();
     }
     
     private static long time;
