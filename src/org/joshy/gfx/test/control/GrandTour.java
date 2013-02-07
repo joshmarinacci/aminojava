@@ -73,7 +73,8 @@ public class GrandTour implements Runnable {
                         .add(new Label("A label"))
                         .add(new Label("A label so long that it will have to wrap").setPrefWidth(150))
                         .add(new Label("A multiline\nlabel with \nhard coded returns"))
-                        .add(new Label("A Big Font!").setFont(Font.name("Arial").size(30).resolve()));
+                        .add(new Label("A Big Font!").setFont(Font.name("Arial").size(30).resolve()))
+                        .add(new ImageView().setSource(GrandTour.class.getResource("pattern.png")).setPrefWidth(100).setPrefHeight(100));
                 ;
                 return box;
             }
