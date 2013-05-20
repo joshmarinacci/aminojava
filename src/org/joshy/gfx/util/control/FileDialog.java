@@ -1,8 +1,8 @@
 package org.joshy.gfx.util.control;
 
+import java.awt.Frame;
+import java.io.File;
 import org.joshy.gfx.event.Callback;
-
-import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,6 +15,7 @@ public class FileDialog {
     private Callback<FileDialog> cancelCallback;
     private Callback<FileDialog> succeedCallback;
     private String title = "Untitled";
+    private File selectedFile;
 
     public FileDialog() {
     }
@@ -43,6 +44,7 @@ public class FileDialog {
         fd.setTitle(getTitle());
         fd.setVisible(true);
         if(fd.getFile() != null) {
+            this.selectedFile = new File(fd.getDirectory(),fd.getFile());
             if(succeedCallback != null) {
                 try {
                     succeedCallback.call(this);
@@ -51,6 +53,7 @@ public class FileDialog {
                 }
             }
         } else {
+            this.selectedFile = null;
             if(cancelCallback != null) {
                 try {
                     cancelCallback.call(this);
@@ -64,5 +67,8 @@ public class FileDialog {
     public String getTitle() {
         return title;
     }
-    
+
+    public File getSelectedFile() {
+        return selectedFile;
+    }
 }
